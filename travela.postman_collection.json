@@ -37,6 +37,34 @@
 					"response": []
 				},
 				{
+					"name": "create Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test2\",\n    \"date\": \"2024-09-19\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/survey/10",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"survey",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "all",
 					"request": {
 						"method": "GET",
@@ -49,6 +77,38 @@
 							"path": [
 								"api",
 								"survey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "result",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/survey/1/result",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"survey",
+								"1",
+								"result"
 							]
 						}
 					},
@@ -163,7 +223,13 @@
 					"name": "create",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"surveyId\": 1,\n    \"questionId\": 1,\n    \"answerId\": 1\n}",
@@ -199,37 +265,6 @@
 							"path": [
 								"api",
 								"survey-event"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "result",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"surveyId\": 1\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/api/survey-event/result",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"api",
-								"survey-event",
-								"result"
 							]
 						}
 					},

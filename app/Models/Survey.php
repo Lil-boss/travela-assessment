@@ -24,4 +24,9 @@ class Survey extends Model
     {
         return $this->hasMany(SurveyAnswer::class, 'surveyId');
     }
+
+    public function surveyEvent(): HasMany
+    {
+        return $this->hasMany(SurveyEvent::class, 'surveyId');
+    }
 }

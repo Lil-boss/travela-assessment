@@ -7,6 +7,7 @@ use App\Models\Survey;
 use App\Models\SurveyQuestion;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class SurveyQuestionController extends Controller
@@ -22,10 +23,12 @@ class SurveyQuestionController extends Controller
                 return response()->json(['error' => 'Survey not found'], ResponseAlias::HTTP_NOT_FOUND);
             }
 
+            DB::beginTransaction();
             $createSurveyQuestion = SurveyQuestion::create([
                 'surveyId' => $surveyId,
                 'question' => $question,
             ]);
+            DB::commit();
 
             return response()->json([
                 'status' => 'success',
@@ -33,6 +36,7 @@ class SurveyQuestionController extends Controller
                 'data' => $createSurveyQuestion
             ], 201);
         } catch (Exception $error) {
+            DB::rollBack();
             return response()->json(['error' => $error->getMessage()], ResponseAlias::HTTP_BAD_REQUEST);
         }
     }

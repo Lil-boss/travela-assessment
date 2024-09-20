@@ -69,8 +69,17 @@ NB: A postman collection is included in the root directory of the project.
 - **URL:** `/api/survey`
 - **Method:** `GET`
 
+### 3. Delete a Survey
 
-### 3. Create a Survey question
+- **URL:** `/api/survey/{surveyId}`
+- **Method:** `DELETE`
+- **Response Body sample:**
+  ```json
+  {"status":"success","message":"Survey deleted successfully"}
+  ```
+
+
+### 4. Create a Survey question
 
 - **URL:** `/api/survey-question`
 - **Method:** `POST`
@@ -82,13 +91,13 @@ NB: A postman collection is included in the root directory of the project.
   }
   ```
   
-### 4. Get Survey Questions
+### 5. Get Survey Questions
 
 - **URL:** `/api/survey-question`
 - **Method:** `GET`
 
 
-### 5. Create a Survey answer
+### 6. Create a Survey answer
 
 - **URL:** `/api/survey-answer`
 - **Method:** `POST`
@@ -100,13 +109,13 @@ NB: A postman collection is included in the root directory of the project.
   }
   ```
 
-### 6. Get Survey Answers
+### 7. Get Survey Answers
 
 - **URL:** `/api/survey-answer`
 - **Method:** `GET`
 
 
-### 7. Create a Survey event
+### 8. Create a Survey event
 
 - **URL:** `/api/survey-event`
 - **Method:** `POST`
@@ -119,14 +128,14 @@ NB: A postman collection is included in the root directory of the project.
   }
   ```
 
-### 8. Get Survey Events
+### 9. Get Survey Events
 
 - **URL:** `/api/survey-event`
 - **Method:** `GET`
 
-### 9. Get Survey Results
+### 10. Get Survey Results
 
-- **URL:** `/api/survey-event/results`
+- **URL:** `/api/survey/{surveyId}/result`
 - **Method:** `GET`
 - **Response Body sample:**
   ```json
@@ -150,6 +159,7 @@ NB: A postman collection is included in the root directory of the project.
     }
     ]
   ```
+  
 
 
 

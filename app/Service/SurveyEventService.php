@@ -21,7 +21,7 @@ class SurveyEventService
             ->get();
 
         if ($surveyEvents->isEmpty()) {
-            throw new Exception('Survey not found', ResponseAlias::HTTP_NOT_FOUND);
+            throw new Exception('There is no events for this survey', ResponseAlias::HTTP_NOT_FOUND);
         }
 
         $surveyEventsGrouped = $surveyEvents->groupBy('questionId');

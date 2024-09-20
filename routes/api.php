@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('survey')->group(function () {
     Route::post('/', [SurveyController::class, 'createSurvey']);
     Route::get('/', [SurveyController::class, 'getSurvey']);
+    Route::get('{surveyId}/result', [SurveyController::class, 'surveyResult']);
+    Route::delete('{survey}', [SurveyController::class, 'deleteSurvey']);
 });
 
 //survey question routes
@@ -40,6 +42,5 @@ Route::prefix('survey-answer')->group(function () {
 Route::prefix('survey-event')->group(function () {
     Route::post('/', [SurveyEventController::class, 'createSurveyEvent']);
     Route::get('/', [SurveyEventController::class, 'getSurveyEvent']);
-    Route::get('/result', [SurveyEventController::class, 'eventResult']);
 
 });

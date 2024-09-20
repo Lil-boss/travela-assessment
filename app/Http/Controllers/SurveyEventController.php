@@ -7,7 +7,7 @@ use App\Models\SurveyEvent;
 use App\Service\SurveyEventService;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class SurveyEventController extends Controller
@@ -20,11 +20,13 @@ class SurveyEventController extends Controller
             $answerId = $request->get("answerId");
             $surveyEventService = new SurveyEventService();
 
+            DB::beginTransaction();
             $createSurveyEvent = $surveyEventService->createSurveyEvent(
                 $surveyId,
                 $questionId,
                 $answerId
             );
+            DB::commit();
 
             return response()->json([
                 'status' => 'success',
@@ -32,6 +34,7 @@ class SurveyEventController extends Controller
                 'data' => $createSurveyEvent
             ], ResponseAlias::HTTP_CREATED);
         } catch (Exception $error) {
+            DB::rollBack();
             return response()->json(['error' => $error->getMessage()], ResponseAlias::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -43,24 +46,6 @@ class SurveyEventController extends Controller
                 ->with('survey', 'surveyQuestion', 'surveyAnswer')
                 ->get();
             return response()->json($surveyEvent, ResponseAlias::HTTP_OK);
-        } catch (Exception $error) {
-            return response()->json(['error' => $error->getMessage()], ResponseAlias::HTTP_BAD_REQUEST);
-        }
-    }
-
-    public function eventResult(Request $request): JsonResponse
-    {
-        try {
-            $surveyId = $request->input("surveyId");
-
-            $surveyEventService = new SurveyEventService();
-            $result = $surveyEventService->surveyEventResult($surveyId);
-
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Survey Event result fetched successfully',
-                'data' => $result
-            ], ResponseAlias::HTTP_OK);
         } catch (Exception $error) {
             return response()->json(['error' => $error->getMessage()], ResponseAlias::HTTP_BAD_REQUEST);
         }
