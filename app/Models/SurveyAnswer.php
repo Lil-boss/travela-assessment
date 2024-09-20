@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class surveyAnswer extends Model
+class SurveyAnswer extends Model
 {
     use HasFactory;
 
@@ -17,6 +17,6 @@ class surveyAnswer extends Model
 
     public function surveyQuestion(): BelongsTo
     {
-        return $this->belongsTo(surveyQuestion::class);
+        return $this->belongsTo(SurveyQuestion::class, 'surveyQuestionId');
     }
 }

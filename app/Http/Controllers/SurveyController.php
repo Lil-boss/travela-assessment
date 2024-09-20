@@ -2,26 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SurveyRequest;
 use App\Models\Survey;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class SurveyController extends Controller
 {
-    public function createSurvey(Request $request): JsonResponse
+    public function createSurvey(SurveyRequest $request): JsonResponse
     {
         try {
+
+            $name = $request->input("name");
+            $date = $request->input("date");
+
             $createSurvey = Survey::create([
-                'name' => $request->name,
-                'date' => $request->date,
+                'name' => $name,
+                'date' => $date,
             ]);
             return response()->json([
+                'status' => 'success',
                 'message' => 'Survey created successfully',
                 'data' => $createSurvey
-            ], 201);
+            ], ResponseAlias::HTTP_CREATED);
         } catch (Exception $error) {
-            return response()->json(['error' => $error->getMessage()], 400);
+            return response()->json(['error' => $error->getMessage()], ResponseAlias::HTTP_BAD_REQUEST);
         }
     }
 
@@ -29,9 +35,13 @@ class SurveyController extends Controller
     {
         try {
             $survey = Survey::orderBy('id', 'desc')->get();
-            return response()->json($survey, 200);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Survey fetched successfully',
+                'data' => $survey
+            ], ResponseAlias::HTTP_OK);
         } catch (Exception $error) {
-            return response()->json(['error' => $error->getMessage()], 400);
+            return response()->json(['error' => $error->getMessage()], ResponseAlias::HTTP_BAD_REQUEST);
         }
     }
 }
