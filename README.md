@@ -51,6 +51,7 @@ php artisan migrate
 # API Endpoints
 
 The API provides the following endpoints for interacting with the survey application:
+NB: A postman collection is included in the root directory of the project.
 
 ### 1. Create a Survey
 

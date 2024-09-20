@@ -1,0 +1,270 @@
+{
+	"info": {
+		"_postman_id": "6e49c573-f632-45fd-b0ef-4b6592664c53",
+		"name": "travela",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11835189"
+	},
+	"item": [
+		{
+			"name": "survey",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test2\",\n    \"date\": \"2024-09-19\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/survey",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"survey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/api/survey",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"survey"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "survey question",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"surveyId\": 1,\n    \"question\": \"Student Well-being and Mental Health\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/survey-question",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"survey-question"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/api/survey-question",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"survey-question"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "survey answer",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"surveyQuestionId\": 1,\n    \"answer\": \"Monthly\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/survey-answer",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"survey-answer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/api/survey-answer",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"survey-answer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "survey event",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"surveyId\": 1,\n    \"questionId\": 1,\n    \"answerId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/survey-event",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"survey-event"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/api/survey-event",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"survey-event"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "result",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"surveyId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/survey-event/result",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"survey-event",
+								"result"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseurl",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}
