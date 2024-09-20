@@ -13,7 +13,6 @@ class SurveyController extends Controller
     public function createSurvey(SurveyRequest $request): JsonResponse
     {
         try {
-
             $name = $request->input("name");
             $date = $request->input("date");
 
@@ -21,6 +20,7 @@ class SurveyController extends Controller
                 'name' => $name,
                 'date' => $date,
             ]);
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'Survey created successfully',
@@ -35,6 +35,7 @@ class SurveyController extends Controller
     {
         try {
             $survey = Survey::orderBy('id', 'desc')->get();
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'Survey fetched successfully',

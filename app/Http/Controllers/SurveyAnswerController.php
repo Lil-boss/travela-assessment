@@ -21,6 +21,7 @@ class SurveyAnswerController extends Controller
                 'surveyQuestionId' => $surveyQuestionId,
                 'answer' => $answer,
             ]);
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'Survey Answer created successfully',
@@ -37,6 +38,7 @@ class SurveyAnswerController extends Controller
             $surveyAnswer = SurveyAnswer::orderBy('id', 'desc')
                 ->with('surveyQuestion')
                 ->get();
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'Survey Answer fetched successfully',

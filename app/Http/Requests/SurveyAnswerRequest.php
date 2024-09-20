@@ -23,6 +23,7 @@ class SurveyAnswerRequest extends FormRequest
     {
         return [
             "surveyQuestionId" => "required",
+            "answer" => "required|string",
         ];
     }
 

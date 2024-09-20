@@ -39,7 +39,9 @@ class SurveyEventController extends Controller
     public function getSurveyEvent(): JsonResponse
     {
         try {
-            $surveyEvent = SurveyEvent::orderBy('id', 'desc')->get();
+            $surveyEvent = SurveyEvent::orderBy('id', 'desc')
+                ->with('survey', 'surveyQuestion', 'surveyAnswer')
+                ->get();
             return response()->json($surveyEvent, ResponseAlias::HTTP_OK);
         } catch (Exception $error) {
             return response()->json(['error' => $error->getMessage()], ResponseAlias::HTTP_BAD_REQUEST);
